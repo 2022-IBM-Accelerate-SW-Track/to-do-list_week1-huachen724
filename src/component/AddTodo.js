@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, TextField } from "@mui/material";
 
 class AddTodo extends Component {
     // A local react state of the this component with a content property set to nothing.
@@ -16,14 +17,12 @@ class AddTodo extends Component {
         content: event.target.value,
       });
     };
-    // The handleSubmit function collects the forms input and puts it into the react state.
-    // event.preventDefault() is called to prevents default event behavior like refreshing the browser.
-    // this.props.addTodo(this.state) passes the current state (or user input) into the addTodo function defined
-    // in the Home.js file which then adds the input into the list.
-    handleSubmit = (event) => {
-      event.preventDefault();
+
+    handleSubmit = (event) => { //collects the forms input and puts it into the react state.
+      event.preventDefault(); //called to prevents default event behavior like refreshing the browser.
       if (this.state.content.trim()) {
-        this.props.addTodo(this.state);
+        this.props.addTodo(this.state); //passes the current state (or user input) into the addTodo function defined
+                                        //in the Home.js file which then adds the input into the list.
         this.setState({
           content: "",
         });
@@ -37,7 +36,20 @@ class AddTodo extends Component {
         // an OnClick event.
         // 3. The value of the text field also should reflect the local state of this component.
         <div>
-          
+          <TextField
+            label="Add New Item"
+            variant="outlined"
+            onChange={this.handleChange}
+            value={this.setState.content}
+          />
+          <Button
+            style={{ marginLeft: "10px" }}
+            onClick={this.handleSubmit}
+            variant="contained"
+            color="primary"
+          >
+            Add
+          </Button>
         </div>
       );
     }
